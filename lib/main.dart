@@ -1,18 +1,20 @@
-// import 'package:dialogflow_flutter/language.dart';
+import 'package:firebase_core/firebase_core.dart';
+import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
-import 'package:trainflutter/Services/services.dart';
 import 'package:trainflutter/localizations/changelocal.dart';
 import 'package:trainflutter/localizations/transliation.dart';
-//import 'package:trainflutter/pages/chatbot.dart';
-
 import 'package:get/get.dart';  
 import 'package:trainflutter/pages/lang.dart';
 import 'package:trainflutter/route.dart';
 
+import 'Services/services.dart';
+
 
 void main() async  {
   WidgetsFlutterBinding.ensureInitialized();
-  await initialServices(); 
+  await Firebase.initializeApp();
+  FirebaseMessaging.instance.getToken().then((value) => print(value));
+  await initialServices();
   runApp(const MyApp());
 }
 class MyApp extends StatelessWidget {
@@ -27,7 +29,7 @@ class MyApp extends StatelessWidget {
       locale:controller.language ,
       theme: ThemeData(
         textTheme: const TextTheme(
-          headline4:TextStyle(
+          headlineMedium:TextStyle(
             color:Colors.orangeAccent,fontSize:80,
             fontWeight:FontWeight.bold ) 
         ) 
