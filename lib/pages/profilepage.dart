@@ -38,7 +38,7 @@ class _profilepageState extends State<profilepage> {
       body:
      Padding(
        padding: const EdgeInsets.all(15.0),
-       child: Column(
+       child: ListView(
         children: [
           SizedBox(
             height: 120,
